@@ -5,16 +5,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 from app.database import get_db
 from app.deps import get_current_user
 from app.models import User
-from app.schemas.auth import (
-    UserCreate,
-    UserOut,
-    Token,
-    EmailRequest,
-    ResetPasswordRequest,
-)
+from app.schemas.auth import UserCreate, UserOut, Token
 from app.security import hash_password, verify_password, create_access_token
-from app.services.otp import create_otp, verify_otp
-from app.services.email import send_otp_email
 from app.ratelimit import limiter
 
 router = APIRouter()
@@ -78,63 +70,6 @@ def login(
     return Token(
         access_token=create_access_token(user.id, user.is_admin)
     )
-
-
-@router.post("/forgot-password")
-@limiter.limit("5/minute")
-async def forgot_password(
-    request: Request,
-    data: EmailRequest,
-    db: Session = Depends(get_db),
-):
-    user = db.query(User).filter(
-        User.email == data.email.lower()
-    ).first()
-
-    if not user:
-        return {
-            "message": "If the email exists, a reset code has been sent."
-        }
-
-    otp = create_otp(db, data.email, "reset_password")
-    await send_otp_email(data.email, otp, "reset_password")
-
-    return {
-        "message": "If the email exists, a reset code has been sent."
-    }
-
-
-@router.post("/reset-password")
-@limiter.limit("10/minute")
-def reset_password(
-    request: Request,
-    data: ResetPasswordRequest,
-    db: Session = Depends(get_db),
-):
-    if not verify_otp(
-        db, data.email, data.otp, "reset_password"
-    ):
-        raise HTTPException(
-            status_code=400,
-            detail="Invalid or expired code",
-        )
-
-    user = db.query(User).filter(
-        User.email == data.email.lower()
-    ).first()
-
-    if not user:
-        raise HTTPException(
-            status_code=404,
-            detail="User not found",
-        )
-
-    user.hashed_password = hash_password(data.new_password)
-    db.commit()
-
-    return {
-        "message": "Password updated. Log in with your new password."
-    }
 
 
 @router.get("/me", response_model=UserOut)

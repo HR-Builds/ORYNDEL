@@ -12,8 +12,6 @@ import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
 import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import MyOrders from "./pages/MyOrders";
@@ -64,8 +62,6 @@ export default function App() {
           <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders" element={<MyOrders />} />

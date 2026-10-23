@@ -12,12 +12,6 @@ class Settings(BaseSettings):
     FRONTEND_URL: str = "http://localhost:5173"
     UPLOAD_DIR: str = "uploads"
 
-    SMTP_HOST: str
-    SMTP_PORT: int = 587
-    SMTP_USER: str
-    SMTP_PASSWORD: str
-    MAIL_FROM: str
-
     BANK_NAME: str = ""
     BANK_ACCOUNT_TITLE: str = ""
     BANK_ACCOUNT_NUMBER: str = ""
