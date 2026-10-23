@@ -11,6 +11,7 @@ class Settings(BaseSettings):
 
     FRONTEND_URL: str = "http://localhost:5173"
     UPLOAD_DIR: str = "uploads"
+    FRONTEND_URL: str = "https://oryndel.vercel.app"
 
     BANK_NAME: str = ""
     BANK_ACCOUNT_TITLE: str = ""

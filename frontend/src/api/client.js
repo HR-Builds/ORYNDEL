@@ -1,4 +1,5 @@
-﻿import axios from "axios";
+﻿
+import axios from "axios";
 
 const configuredUrl = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, "");
 
@@ -8,7 +9,11 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("oryndel_token");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
   return config;
 });
 
