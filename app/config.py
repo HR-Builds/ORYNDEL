@@ -1,4 +1,6 @@
-﻿from pydantic_settings import BaseSettings, SettingsConfigDict
+﻿
+import os
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -9,9 +11,8 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 10080
 
-    FRONTEND_URL: str = "http://localhost:5173"
-    UPLOAD_DIR: str = "uploads"
     FRONTEND_URL: str = "https://oryndel.vercel.app"
+    UPLOAD_DIR: str = "uploads"
 
     BANK_NAME: str = ""
     BANK_ACCOUNT_TITLE: str = ""
@@ -24,3 +25,8 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+# Vercel's application directory is read-only.
+# Use temporary storage on Vercel and keep local uploads unchanged.
+if os.getenv("VERCEL"):
+    settings.UPLOAD_DIR = "/tmp/uploads"
