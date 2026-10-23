@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+﻿from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -22,10 +22,10 @@ class Settings(BaseSettings):
     BANK_ACCOUNT_TITLE: str = ""
     BANK_ACCOUNT_NUMBER: str = ""
 
+    GROQ_API_KEY: str = ""
     GEMINI_API_KEY: str = ""
     XAI_API_KEY: str = ""
     TAVILY_API_KEY: str = ""
 
 
 settings = Settings()
-

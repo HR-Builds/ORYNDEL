@@ -49,7 +49,7 @@ export default function MyOrders() {
                 {o.fraud_flag && <span style={{ color: "#d98a97" }}> · Under review</span>}
               </p>
               <p className="order-card-meta">
-                {o.items.map((i) => `${i.quantity}× ${i.product_name}`).join(", ")}
+                {(o.items || []).map((i) => `${i.quantity}× ${i.product_name}`).join(", ") || "Order items unavailable"}
               </p>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem", flexWrap: "wrap", gap: "1rem" }}>
                 <span style={{ fontFamily: "var(--serif)", fontSize: "1.3rem", color: "var(--gold)" }}>

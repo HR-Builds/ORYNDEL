@@ -34,6 +34,7 @@ app.include_router(orders.router, prefix="/api/orders", tags=["orders"])
 app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
 app.include_router(contact.router, prefix="/api/contact", tags=["contact"])
 app.include_router(agents_router.router, tags=["agents"])
+app.include_router(agents_router.router, prefix="/api", tags=["agents"])
 
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
