@@ -20,9 +20,15 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    const status = error.response?.status;
     const url = error.config?.url || "";
 
-    if (error.response?.status === 401 && !url.includes("/auth/")) {
+    // Clear an expired/invalid token, but don't redirect on login failures.
+    if (
+      status === 401 &&
+      !url.includes("/auth/login") &&
+      !url.includes("/auth/register")
+    ) {
       localStorage.removeItem("oryndel_token");
 
       if (!window.location.pathname.startsWith("/login")) {
