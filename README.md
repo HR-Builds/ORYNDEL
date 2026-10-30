@@ -252,11 +252,6 @@ ORYNDEL is being developed with a focus on:
 - Reducing repetitive administrative workflows.
 - Combining traditional backend engineering with agentic AI systems.
 
-## Current Development Status
-
-ORYNDEL is actively evolving. Features and workflows are being developed, tested, and improved as the platform grows.
-
-Some agent capabilities may require external API credentials and additional configuration.
 
 ## Developer
 
