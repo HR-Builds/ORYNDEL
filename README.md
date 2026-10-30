@@ -1,4 +1,4 @@
-# ORYNDEL — AI-Powered E-Commerce Intelligence Platform
+# ORYNDEL - AI-Powered E-Commerce Intelligence Platform
 
 <p align="center">
   <strong>Smarter Commerce. Intelligent Decisions.</strong>
