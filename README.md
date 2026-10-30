@@ -10,8 +10,7 @@
 
 ---
 
-oryndel-zzan-three.vercel.app
-
+(https://oryndel-zzan-three.vercel.app/)
 ## Overview
 
 **ORYNDEL** is a full-stack e-commerce intelligence platform that combines modern web technologies with AI-powered agents to help improve shopping experiences and simplify business operations.
